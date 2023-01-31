@@ -20,5 +20,6 @@
     "files.associations": {
         "string": "cpp"
     },
-    "cmake.sourceDirectory": "${workspaceFolder}/src/PhysXNative"
+    "cmake.sourceDirectory": "${workspaceFolder}/src/PhysXNative",
+    "cmake.configureOnOpen": false
 }

@@ -70,7 +70,7 @@ DllExport(void*) pxAddStaticPlane(PxSceneHandle* scene, V4d coeff, PxMaterial* m
 } 
 
 
-DllExport(void*) pxSimulate(PxSceneHandle* scene, double dt) {
+DllExport(void) pxSimulate(PxSceneHandle* scene, double dt) {
     if(dt > 0.0) {
         scene->Scene->simulate(dt);
         scene->Scene->fetchResults(true);

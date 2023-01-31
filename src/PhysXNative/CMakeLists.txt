@@ -2,34 +2,15 @@ cmake_minimum_required(VERSION 3.9)
 include("cmake/Aardvark.cmake")
 
 project(PhysXNative)
-
-
-find_path(PHYSX_INCLUDE_DIR PxPhysicsAPI.h)
 add_library(PhysXNative SHARED PhysXNative.h PhysXNative.cpp)
 
-
-# PhysX does not have a find_package setup therefore we have to find it manually
-include(SelectLibraryConfigurations)
-
-find_library(PhysXPvdSDK_LIBRARY_RELEASE NAMES PhysXPvdSDK_64 PhysXPvdSDK_static_64 PATH_SUFFIXES lib PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}" NO_DEFAULT_PATH REQUIRED)
-find_library(PhysXPvdSDK_LIBRARY_DEBUG NAMES PhysXPvdSDK_64 PhysXPvdSDK_static_64 PATH_SUFFIXES lib PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug" NO_DEFAULT_PATH REQUIRED)
-select_library_configurations(PhysXPvdSDK)
-
-find_library(PhysXExtensions_LIBRARY_RELEASE NAMES PhysXExtensions_64 PhysXExtensions_static_64 PATH_SUFFIXES lib PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}" NO_DEFAULT_PATH REQUIRED)
-find_library(PhysXExtensions_LIBRARY_DEBUG NAMES PhysXExtensions_64 PhysXExtensions_static_64 PATH_SUFFIXES lib PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug" NO_DEFAULT_PATH REQUIRED)
-select_library_configurations(PhysXExtensions)
-
-find_library(PhysXFoundation_LIBRARY_RELEASE NAMES PhysXFoundation_64 PhysXFoundation_static_64 PATH_SUFFIXES lib PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}" NO_DEFAULT_PATH REQUIRED)
-find_library(PhysXFoundation_LIBRARY_DEBUG NAMES PhysXFoundation_64 PhysXFoundation_static_64 PATH_SUFFIXES lib PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug" NO_DEFAULT_PATH REQUIRED)
-select_library_configurations(PhysXFoundation)
-
-find_library(PhysXCommon_LIBRARY_RELEASE NAMES PhysXCommon_64 PhysXCommon_static_64 PATH_SUFFIXES lib PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}" NO_DEFAULT_PATH REQUIRED)
-find_library(PhysXCommon_LIBRARY_DEBUG NAMES PhysXCommon_64 PhysXCommon_static_64 PATH_SUFFIXES lib PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug" NO_DEFAULT_PATH REQUIRED)
-select_library_configurations(PhysXCommon)
-
-find_library(PhysX_LIBRARY_RELEASE NAMES PhysX_64 PhysX_static_64 PATH_SUFFIXES lib PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}" NO_DEFAULT_PATH REQUIRED)
-find_library(PhysX_LIBRARY_DEBUG NAMES PhysX_64 PhysX_static_64 PATH_SUFFIXES lib PATHS "${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/debug" NO_DEFAULT_PATH REQUIRED)
-select_library_configurations(PhysX)
+set(PHYSX_INCLUDE_DIR "C:\\Users\\aszabo\\repo\\PhysX\\physx\\include")
+# find_path(PHYSX_INCLUDE_DIR PxPhysicsAPI.h REQUIRED)
+find_library(PhysXPvdSDK_LIBRARY NAMES PhysXPvdSDK_64 PhysXPvdSDK_static_64 PATH_SUFFIXES lib PATHS "C:\\Users\\aszabo\\repo\\PhysX\\physx\\bin\\win.x86_64.vc142.mt\\release" NO_DEFAULT_PATH REQUIRED)
+find_library(PhysXExtensions_LIBRARY NAMES PhysXExtensions_64 PhysXExtensions_static_64 PATH_SUFFIXES lib PATHS "C:\\Users\\aszabo\\repo\\PhysX\\physx\\bin\\win.x86_64.vc142.mt\\release" NO_DEFAULT_PATH REQUIRED)
+find_library(PhysXFoundation_LIBRARY NAMES PhysXFoundation_64 PhysXFoundation_static_64 PATH_SUFFIXES lib PATHS "C:\\Users\\aszabo\\repo\\PhysX\\physx\\bin\\win.x86_64.vc142.mt\\release" NO_DEFAULT_PATH REQUIRED)
+find_library(PhysXCommon_LIBRARY NAMES PhysXCommon_64 PhysXCommon_static_64 PATH_SUFFIXES lib PATHS "C:\\Users\\aszabo\\repo\\PhysX\\physx\\bin\\win.x86_64.vc142.mt\\release" NO_DEFAULT_PATH REQUIRED)
+find_library(PhysX_LIBRARY NAMES PhysX_64 PhysX_static_64 PATH_SUFFIXES lib PATHS "C:\\Users\\aszabo\\repo\\PhysX\\physx\\bin\\win.x86_64.vc142.mt\\release" NO_DEFAULT_PATH REQUIRED)
 
 if(WIN32 OR APPLE)
     target_link_libraries(${PROJECT_NAME} PRIVATE ${PhysXPvdSDK_LIBRARY} ${PhysXExtensions_LIBRARY} ${PhysXFoundation_LIBRARY} ${PhysXCommon_LIBRARY} ${PhysX_LIBRARY})
